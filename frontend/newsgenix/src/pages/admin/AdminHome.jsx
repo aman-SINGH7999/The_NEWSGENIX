@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {Link, useNavigate} from 'react-router-dom'
-// import NameNavebar from '../../components/NameNavebar';
+import BACKEND_URL from '../../path'
 
 export default function AdminHome() {
     const [email, setEmail] = useState("");
@@ -18,7 +18,7 @@ export default function AdminHome() {
 
     const loginUser = async (event)=>{
         event.preventDefault();
-        const responce = await fetch('http://localhost:5000/admin',{
+        const responce = await fetch(`${BACKEND_URL}/admin`,{
             method : "post",
             headers : {
                 'Content-Type':"application/json"

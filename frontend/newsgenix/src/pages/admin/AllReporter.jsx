@@ -2,6 +2,7 @@ import React,{useEffect, useState}  from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import NameNavebar from '../../components/NameNavebar';
 import Card2 from '../../components/Card2'
+import BACKEND_URL from '../../path'
 
 export default function AllReporter() {
   const [reporters, setReporters] = useState([]);
@@ -18,7 +19,7 @@ export default function AllReporter() {
       setReporter(user);
       setToken(token);
       const allUser = async ()=>{
-          const responce = await fetch('http://localhost:5000/admin/reporters',{
+          const responce = await fetch(`${BACKEND_URL}/admin/reporters`,{
             method : "get",
             headers : {
               "Content-Type" : "application/json",
@@ -37,7 +38,7 @@ export default function AllReporter() {
 const handleRemove = async (e)=>{
     e.preventDefault();
     console.log("user : ", e.target.value);
-    const responce = await fetch('http://localhost:5000/admin/reporters/remove',{
+    const responce = await fetch(`{BACKEND_URL}/admin/reporters/remove`,{
         method : "get",
         headers : {
             id : e.target.value,
@@ -53,7 +54,7 @@ const handleRemove = async (e)=>{
 const handleCreate = async (e)=>{
     e.preventDefault();
     console.log("user : ", e.target.value);
-    const responce = await fetch('http://localhost:5000/admin/reporters/create',{
+    const responce = await fetch(`${BACKEND_URL}/admin/reporters/create`,{
         method : "get",
         headers : {
             id : e.target.value,
@@ -69,7 +70,7 @@ const handleCreate = async (e)=>{
 const handleDelete = async (e)=>{
     e.preventDefault();
     console.log("user : ", e.target.value);
-    const responce = await fetch('http://localhost:5000/admin/reporters/delete',{
+    const responce = await fetch(`{BACKEND_URL}/admin/reporters/delete`,{
         method : "get",
         headers : {
             id : e.target.value,

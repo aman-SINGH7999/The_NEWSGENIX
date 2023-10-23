@@ -2,6 +2,7 @@ import React,{useEffect, useState}  from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import NameNavebar from '../../components/NameNavebar';
 import Card2 from '../../components/Card2'
+import BACKEND_URL from '../../path'
 
 export default function AllNews() {
   const [newsdata, setNewsdata] = useState([]);
@@ -18,7 +19,7 @@ export default function AllNews() {
     }else{
       setReporter(user);
     const getdata = async ()=>{
-        const responce = await fetch('http://localhost:5000/admin/allnews',{
+        const responce = await fetch(`${BACKEND_URL}/admin/allnews`,{
           method : "get",
           headers : {
             "Content-Type" : "application/json",
@@ -26,12 +27,12 @@ export default function AllNews() {
             // reporter : user._id,
           },
         })
-        console.log("-----------mydata : ---", responce)
+        // console.log("-----------mydata : ---", responce)
         const data = await responce.json();
         setNewsdata(data.data);
-        console.log("   data:        ",data.data[0])
-        console.log("NEWS DATA : ",newsdata)
-        console.log("----------------------", Array.isArray(newsdata))
+        // console.log("   data:        ",data.data[0])
+        // console.log("NEWS DATA : ",newsdata)
+        // console.log("----------------------", Array.isArray(newsdata))
       }
       getdata();
     }
@@ -40,7 +41,7 @@ export default function AllNews() {
   const handleDelete = async (e)=>{
     e.preventDefault();
     const token = JSON.parse(localStorage.getItem('token'));
-    const responce = await fetch('http://localhost:5000/admin/delete',{
+    const responce = await fetch(`${BACKEND_URL}/admin/delete`,{
         method : "get",
         headers : {
             id : e.target.value,

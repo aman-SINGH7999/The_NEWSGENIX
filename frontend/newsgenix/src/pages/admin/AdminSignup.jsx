@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 import NameNavebar from '../../components/NameNavebar';
+import BACKEND_URL from '../../path'
 
 export default function AdminSignup() {
   const [name, setName] = useState("");
@@ -21,7 +22,7 @@ export default function AdminSignup() {
 
   const createUser = async (e)=>{
       e.preventDefault();
-          const responce = await fetch('http://localhost:5000/admin/signup',{
+          const responce = await fetch(`${BACKEND_URL}/admin/signup`,{
               method : "post",
               headers : {
                 "Content-Type" : "application/json",

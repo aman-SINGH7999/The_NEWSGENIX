@@ -11,6 +11,8 @@ import UpdateNews from './pages/admin/UpdateNews';
 import AllReporter from './pages/admin/AllReporter';
 import {Context} from './context'
 
+
+
 export default function App() {
   const [page, setPage] = useState("home");
   return (

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 import NameNavebar from '../../components/NameNavebar';
 import Card2 from '../../components/Card2'
+import BACKEND_URL from '../../path'
 
 export default function UpdateNews() {
   const [id, setId] = useState("");
@@ -27,7 +28,7 @@ export default function UpdateNews() {
       console.log("NEWS ID : ",newsId)
       const myfunc = async ()=>{
           const token = JSON.parse(localStorage.getItem('token'));
-          const responce = await fetch('http://localhost:5000/admin/getnews',{
+          const responce = await fetch(`${BACKEND_URL}/admin/getnews`,{
               method : "get",
               headers : {
                   "Content-Type" : "application/json",
@@ -55,7 +56,7 @@ export default function UpdateNews() {
           setBraking(data.braking);
           console.log(title)
           console.log(description)
-          console.log("-----------------------------------------------",data);
+          // console.log("-----------------------------------------------",data);
       }
       myfunc();
     }
@@ -64,7 +65,7 @@ export default function UpdateNews() {
   const Updatenews = async (e)=>{
     e.preventDefault();
     const token = JSON.parse(localStorage.getItem('token'));
-    const responce = await fetch('http://localhost:5000/admin/update',{
+    const responce = await fetch(`${BACKEND_URL}/admin/update`,{
       method : "post",
       headers : {
         "Content-Type" : "application/json",
@@ -91,7 +92,7 @@ export default function UpdateNews() {
       setSuccess(true);
     }, 2000);
 
-    console.log("********************************",data2)
+    // console.log("********************************",data2)
     if(data2.success){
         navigate('/admin/allnews');
     }

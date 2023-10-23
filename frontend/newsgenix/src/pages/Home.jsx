@@ -7,6 +7,7 @@ import Sidebar from '../components/Sidebar'
 import Footer from '../components/Footer'
 import { Link } from 'react-router-dom'
 import {Context} from '../context'
+import BACKEND_URL from '../path'
 
 export default function Home() {
   const [data, setData] = useState([]);
@@ -26,7 +27,8 @@ export default function Home() {
 
   useEffect( ()=>{
     const getData = async ()=>{
-        const responce = await fetch('http://localhost:5000/api',{
+      // console.log(`${BACKEND_URL}/api`)
+        const responce = await fetch(`${BACKEND_URL}/api`,{
           method : "get",
           headers : {
             "Content-Type" : "application/json",
@@ -36,7 +38,7 @@ export default function Home() {
         if(alldata){
           setData(alldata.data)
           // console.log("..my data : ",alldata.data)
-          console.log("..Set data : ",data)
+          // console.log("..Set data : ",data)
         }
     }
     getData();

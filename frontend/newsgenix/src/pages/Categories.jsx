@@ -3,6 +3,7 @@ import NameNavebar from '../components/NameNavebar'
 import Navbar from '../components/Navbar'
 import Hero from '../components/Hero'
 import Footer from '../components/Footer'
+import BACKEND_URL from '../path'
 
 export default function Categories() {
  const [mynews, setMynews] = useState({});
@@ -12,7 +13,7 @@ export default function Categories() {
     const newsId = window.location.href.split('/')[4];
     // console.log("clint : ",newsId)
     const getNews = async ()=>{
-        const responce = await fetch("http://localhost:5000/api/news",{
+        const responce = await fetch(`${BACKEND_URL}/api/news`,{
           method : "get",
           headers : {
             "Content-Type" : "application/json",

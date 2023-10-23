@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 import NameNavebar from '../../components/NameNavebar';
 import Card2 from '../../components/Card2'
+import BACKEND_URL from '../../path'
 
 export default function AddNews() {
   const [reporter, setReporter] = useState("");
@@ -17,7 +18,7 @@ export default function AddNews() {
   const navigate = useNavigate();
 
   const submitImage = async (pics)=>{
-    console.log("pics--------------------",pics)
+    // console.log("pics--------------------",pics)
     setCloud(true);
     const data = new FormData()
     data.append("file",pics)
@@ -53,7 +54,7 @@ export default function AddNews() {
   const addnews = async (e)=>{
     e.preventDefault();
     const token = JSON.parse(localStorage.getItem('token'));
-    const responce = await fetch('http://localhost:5000/admin/addnews',{
+    const responce = await fetch(`${BACKEND_URL}/admin/addnews`,{
       method : "post",
       headers : {
         "Content-Type" : "application/json",
